@@ -25,10 +25,12 @@
 //#define SIGILL  4   /* Illegal instruction. */ 
 //#define SIGTRAP 5   /* Trace trap. */ 
 //#define SIGABRT 6   /* Abort. */
+
 #define  True 1
 #define  False 0
 #define MAXCOM 1000 // max number of letters to be supported 
 #define MAXLIST 100 // max number of commands to be supported
+ char userlogin[MAXCOM];
 // Clearing the shell using escape sequences
 //\033 - ASCII escape character
 //[H - move the cursor to the home position
@@ -88,8 +90,11 @@ struct dirent *de;  // Pointer for directory entry
 //printing external directory 
  int printEXDir(void) { 
     char cwd[MAXCOM];
+    
+    
    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-       printf(ANSI_COLOR_RED "mark@"ANSI_COLOR_RESET"EL_ABBAS-"ANSI_COLOR_GREEN"%s"ANSI_COLOR_RED":~$", cwd);
+      
+       printf(ANSI_COLOR_RED "EL_ABBAS-mark@"ANSI_COLOR_RESET"%s-"ANSI_COLOR_GREEN"%s"ANSI_COLOR_RED":~$",userlogin, cwd);
    } else {
        perror("getcwd() error");
        return 1;
@@ -170,12 +175,13 @@ void exec_Args(char** parsed)
             printf("\nCould not execute command..\n"); 
         } exit(0);
         
-      if ((strcmp(parsed,"&")==0 )|| strcmp(parsed,"cd")==0  ) {
+      if ((strcmp(parsed,"&")==0 ) && strcmp(parsed,"cd")==0  ) {
         exit(0);
       }
       else {
       log_F(parsed);
-      }}
+      }
+      }
      else { 
         // waiting for child to terminate 
         wait(NULL);  

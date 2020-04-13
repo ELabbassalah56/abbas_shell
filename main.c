@@ -16,6 +16,10 @@ int main(void)
     printf(ANSI_COLOR_GREEN   "*************************************************"ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RESET  "\t\t***EL_ABBAS_SHELL***"   ANSI_COLOR_RESET "\n");
   printf(ANSI_COLOR_GREEN   "*************************************************"ANSI_COLOR_RESET "\n");
+  printf(ANSI_COLOR_RED"please login enter your name :\t"ANSI_COLOR_RESET);
+      scanf("\n");
+    scanf("%[^\n]s",userlogin);
+    clc();
     //dynamic code superloop
     while(True){
      
